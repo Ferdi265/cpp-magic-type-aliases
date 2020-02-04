@@ -40,13 +40,19 @@ struct Foo2 {
 };
 
 int Foo::*j = &Foo::x;
+int Foo2::*j3 = &Foo2::x;
 MemberPointer<Foo, int> j2 = &Foo::x;
+MemberPointer<Foo2, int> j4 = &Foo2::x;
 
 int (Foo::*k)() = &Foo::fn;
+int (Foo2::*k3)() = &Foo2::fn;
 MemberPointer<Foo, Function<int, Args<>>> k2 = &Foo::fn;
+MemberPointer<Foo2, Function<int, Args<>>> k4 = &Foo2::fn;
 
 bool (Foo::*l)(int, int) const = &Foo::constfn;
+bool (Foo2::*l3)(int, int) const = &Foo2::constfn;
 MemberPointer<Foo, Const<Function<bool, Args<int, int>>>> l2 = &Foo::constfn;
+MemberPointer<Foo2, Const<Function<bool, Args<int, int>>>> l4 = &Foo2::constfn;
 
 #define assert_same_type(a, b) static_assert(std::is_same<decltype(a), decltype(b)>::value, "types didn't match")
 
@@ -60,10 +66,15 @@ assert_same_type(g, g2);
 assert_same_type(h, h2);
 assert_same_type(i, i2);
 assert_same_type(j, j2);
+assert_same_type(j3, j4);
 assert_same_type(k, k2);
+assert_same_type(k3, k4);
 assert_same_type(l, l2);
+assert_same_type(l3, l4);
 
 void h(int) {}
 int Foo::fn() { return 0; }
 bool Foo::constfn(int, int) const { return false; }
+int Foo2::fn() { return 0; }
+bool Foo2::constfn(int, int) const { return false; }
 int main() {}
