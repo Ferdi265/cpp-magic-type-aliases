@@ -48,7 +48,7 @@ MemberPointer<Foo, Function<int, Args<>>> k2 = &Foo::fn;
 bool (Foo::*l)(int, int) const = &Foo::constfn;
 MemberPointer<Foo, Const<Function<bool, Args<int, int>>>> l2 = &Foo::constfn;
 
-#define assert_same_type(a, b) static_assert(std::is_same<decltype(a), decltype(b)>::value)
+#define assert_same_type(a, b) static_assert(std::is_same<decltype(a), decltype(b)>::value, "types didn't match")
 
 assert_same_type(a, a2);
 assert_same_type(b, b2);

@@ -1,5 +1,6 @@
 CXX = g++
-CXXFLAGS = -Wall -Wextra -std=c++17
+CXXSTD = -std=c++11
+CXXFLAGS = -Wall -Wextra $(CXXSTD)
 
 TARGET = test
 SOURCES = $(wildcard *.cpp)
