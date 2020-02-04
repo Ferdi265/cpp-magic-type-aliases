@@ -1,5 +1,5 @@
 CXX = g++
-CXXSTD = -std=c++11
+CXXSTD = -std=c++98
 CXXFLAGS = -Wall -Wextra $(CXXSTD)
 
 TARGET = test

@@ -4,7 +4,15 @@
 #include "cv_magic.h"
 
 template <typename T>
-using Pointer = T*;
+struct __make_pointer {
+    typedef T *type;
+};
 
 template <typename Class, typename T>
-using MemberPointer = T Class::*;
+struct __make_member_pointer {
+    typedef T Class::*type;
+};
+
+#define Pointer(...) typename __make_pointer<__VA_ARGS__>::type
+
+#define MemberPointer(...) typename __make_member_pointer<__VA_ARGS__>::type
